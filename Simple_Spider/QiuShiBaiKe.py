@@ -8,13 +8,13 @@ import HTMLParser
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
-page = 2
-url = ''.join(('http://www.qiushibaike.com/hot/page/', str(page), '/?s=4912246'))
+page = 6
+url = ''.join(('http://www.qiushibaike.com/8hr/page/', str(page)))
 user_agent = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36'
 headers = {'User-Agent': user_agent}
 
 try:
-    request = urllib2.Request('http://www.qiushibaike.com/', headers=headers)
+    request = urllib2.Request(url, headers=headers)
     response = urllib2.urlopen(request)
 except urllib2.URLError, e:
     if hasattr(e, 'code'):
@@ -29,7 +29,7 @@ pattern = re.compile(regular, re.S)
 items = re.findall(pattern, content)
 a = []
 index = 1
-with open(u'..\\糗事百科\\糗事百科.txt', 'w') as f:
+with open(u'..\\糗事百科\\糗事百科.txt', 'a') as f:
     for item in items:
         item = list(item)
         if item not in a:
