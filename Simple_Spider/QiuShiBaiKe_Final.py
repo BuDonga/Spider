@@ -37,7 +37,7 @@ class QiuShi:
 
     @staticmethod
     def deal_content(items):
-        file_name = ''.join((u'糗事百科_', time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime()), '.txt'))
+        file_name = ''.join((u'糗事百科_', time.strftime('%Y_%m_%d', time.localtime()), '.txt'))
         file_path = ''.join((u'..\\糗事百科\\', file_name))
         a = []
         index = 1
@@ -47,7 +47,7 @@ class QiuShi:
                     item = list(item)
                     if item not in a:
                         for b in range(0, 5):
-                            item[b] = HTMLParser.HTMLParser().unescape(item[b]).encode()  # 处理HTML转义字符
+                            item[b] = HTMLParser.HTMLParser().unescape(item[b])  # 处理HTML转义字符
                         # print item[0]  # 用户
                         # print item[1]  # 性别Icon
                         # print item[2]  # 年龄
