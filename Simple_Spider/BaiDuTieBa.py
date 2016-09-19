@@ -73,18 +73,20 @@ class BDTB:
 
     def write_data(self, contents):
         file_path = Tools.get_file_name(u'百度百科', 'BDTB')
-        with open(file_path, 'a') as f:
-            f.write('今日话题：%s' % self.get_title(content))
-            for item in contents:
-                f.write('\n' * 2)
-                f.write('楼层：%d' % self.floor)
-                f.write('\n')
-                f.write(item)
-                f.write('\n' * 2)
-                f.write("*" * 30)
-                f.write('\n' * 2)
-                self.floor += 1
-
+        try:
+            with open(file_path, 'a') as f:
+                f.write('今日话题：%s' % self.get_title(content))
+                for item in contents:
+                    f.write('\n' * 2)
+                    f.write('楼层：%d' % self.floor)
+                    f.write('\n')
+                    f.write(item)
+                    f.write('\n' * 2)
+                    f.write("*" * 30)
+                    f.write('\n' * 2)
+                    self.floor += 1
+        except IOError, e:
+            self.e_log()
 
 if __name__ == '__main__':
     reload(sys)
@@ -100,8 +102,4 @@ if __name__ == '__main__':
         a.write_data(contents)
         a.index += 1
     print '写入完成！！'
-
-
-
-
 
