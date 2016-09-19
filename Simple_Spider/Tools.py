@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 import re
+import time
 
 
 class Tools:
@@ -20,3 +21,10 @@ class Tools:
         except Exception, e:
             print e.message
         return content.strip()
+
+    @staticmethod
+    def get_file_name(file_name, folder_name):
+        file_name = ''.join((file_name, time.strftime('_%Y_%m_%d', time.localtime()), '.txt'))
+        file_path = ''.join(('..\\', folder_name, '\\', file_name))
+        return file_path
+
